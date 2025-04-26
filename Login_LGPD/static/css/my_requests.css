@@ -1,0 +1,99 @@
+/* ------------------ CONTAINER PRINCIPAL ------------------ */
+.requests-container {
+    background-color: #2f2841;
+    color: #f0ffffde;
+    padding: 40px 35px;
+    text-align: center;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0px 15px 45px #00000088;
+    animation: fadeUp 0.7s ease-out forwards;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+/* ------------------ ANIMAÇÃO DE ENTRADA ------------------ */
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ------------------ TÍTULO ------------------ */
+.requests-title {
+    color: #00ff88;
+    font-weight: 800;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+}
+
+/* ------------------ TEXTO ------------------ */
+.requests-text {
+    font-size: 1.2em;
+    color: #f0ffffb0;
+    margin-bottom: 20px;
+}
+
+/* ------------------ LISTA DE REQUISIÇÕES ------------------ */
+.requests-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ------------------ ITEM DA LISTA ------------------ */
+.requests-item {
+    background: #514869;
+    border-radius: 12px;
+    padding: 20px;
+    color: #f0ffffde;
+    text-align: left;
+    box-shadow: 0px 10px 25px #00000040;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+.requests-item:hover {
+    background-color: #60537b;
+    transform: scale(1.02);
+}
+
+/* ------------------ TABELA DE REQUISIÇÕES ------------------ */
+.requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* ------------------ CELULAS DA TABELA ------------------ */
+.requests-table th, .requests-table td {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* ------------------ TÍTULOS DA TABELA ------------------ */
+.requests-table th {
+    background-color: #2f2841;
+    color: #00ff88;
+}
+
+/* ------------------ CELULAS DA TABELA ------------------ */
+.requests-table td {
+    background-color: #514869;
+    color: #f0ffffde;
+}
+
+/* ------------------ ALTERNÂNCIA DE LINHAS DA TABELA ------------------ */
+.requests-table tr:nth-child(even) td {
+    background-color: #60537b;
+}
+
+/* ------------------ EFEITO DE HOVER NA TABELA ------------------ */
+.requests-table tr:hover td {
+    background-color: #444052;
+}

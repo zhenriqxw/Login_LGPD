@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-login">
+    <div class="left-login">
+        <h1>Crie sua conta<br>e acesse nossa aplicação</h1>
+        <img src="{{ url_for('static', filename='assets/astronauta.svg') }}" alt="Astronauta" class="left-login-img">
+    </div>
+
+    <div class="right-login">
+        <div class="card-login">
+            <h1>Cadastro</h1>
+<form method="POST" onsubmit="return verificarSenha()">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="textfield">
+        <div class="label-icon">
+            <label for="username">Nome de Usuário</label>
+            <i class="material-icons">person</i>
+        </div>
+        <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+    </div>
+
+                <div class="textfield">
+                    <div class="label-icon">
+                        <label for="email">E-mail</label>
+                        <i class="material-icons">email</i>
+                    </div>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="textfield password-field">
+                    <div class="label-icon">
+                        <label for="senha">Senha</label>
+                        <i class="material-icons">lock</i>
+                    </div>
+                    <input type="password" id="senha" name="senha" placeholder="Digite uma senha" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('senha')">
+                        <i class="material-icons" id="eye-senha">visibility</i>
+                    </span>
+                </div>
+
+                <div class="textfield password-field">
+                    <div class="label-icon">
+                        <label for="senha_confirmacao">Confirmar Senha</label>
+                        <i class="material-icons">lock</i>
+                    </div>
+                    <input type="password" id="senha_confirmacao" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('senha_confirmacao')">
+                        <i class="material-icons" id="eye-senha_confirmacao">visibility</i>
+                    </span>
+                </div>
+
+                <div class="textfield checkbox">
+                    <label for="lgpd_consent">
+                        Eu concordo com a <a href="{{ url_for('privacy') }}" target="_blank">Política de Privacidade</a> e com o tratamento dos meus dados pessoais conforme a LGPD.
+                    </label>
+                    <input type="checkbox" id="lgpd_consent" name="lgpd_consent" required>
+                </div>
+
+                <p id="mensagemErro" class="error-message"></p>
+
+                <button type="submit" class="btn-login">Registrar</button>
+                
+                <p class="login-link">
+                    Já tem uma conta? <a href="{{ url_for('login') }}" class="fade-link">Faça login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+
+    const fadeLink = document.querySelector('.fade-link');
+    if (fadeLink) {
+        fadeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+                window.location.href = fadeLink.href;
+            }, 500);
+        });
+    }
+});
+
+// Removendo validação de senha e confirmação no frontend
+function verificarSenha() {
+    return true;
+}
+
+function togglePasswordVisibility(fieldId) {
+    const input = document.getElementById(fieldId);
+    const eyeIcon = document.getElementById("eye-" + fieldId);
+
+    const isHidden = input.type === "password";
+    input.type = isHidden ? "text" : "password";
+    eyeIcon.textContent = isHidden ? "visibility_off" : "visibility";
+}
+</script>
+{% endblock %}

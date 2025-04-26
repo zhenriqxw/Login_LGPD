@@ -1,0 +1,41 @@
+/* ------------------ BASE ------------------ */
+body {
+    background-color: #201b2c;
+    color: #f0ffffde;
+    font-family: 'Noto Sans', sans-serif;
+    padding: 20px;
+}
+
+/* ------------------ CONTAINER PRINCIPAL ------------------ */
+.privacy-container {
+    background-color: #2f2841;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* ------------------ TÍTULOS ------------------ */
+h1 {
+    color: #00ff88;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* ------------------ PARÁGRAFOS ------------------ */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ------------------ LINKS ------------------ */
+a {
+    color: #00ff88;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00e67a;
+}

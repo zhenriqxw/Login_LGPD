@@ -1,0 +1,81 @@
+/* Styles for forgot_password and reset_password pages */
+form {
+    max-width: 320px; /* Afinado */
+    margin: 20px auto;
+    padding: 16px; /* Menor que antes */
+    background: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+    color: #444;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 400px;
+    border-radius: 4px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 400px;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+}

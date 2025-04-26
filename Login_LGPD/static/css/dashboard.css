@@ -1,0 +1,71 @@
+/* ------------------ CONTAINER PRINCIPAL DA DASHBOARD ------------------ */
+.dashboard-container {
+    background-color: #2f2841;
+    color: #f0ffffde;
+    padding: 40px 35px;
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0px 15px 45px #00000088;
+    animation: fadeUp 0.7s ease-out forwards;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+/* ------------------ ANIMAÇÃO DE ENTRADA ------------------ */
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ------------------ TÍTULO PRINCIPAL DA DASHBOARD ------------------ */
+.dashboard-container h2 {
+    color: #00ff88;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* ------------------ AÇÕES LGPD (grid responsivo) ------------------ */
+.lgpd-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* ------------------ CARTÃO DE AÇÃO ------------------ */
+.action-card {
+    background-color: #514869;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0px 10px 25px #00000040;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-align: left;
+    color: #f0ffffde;
+}
+
+/* ------------------ EFEITO DE HOVER NO CARTÃO ------------------ */
+.action-card:hover {
+    background-color: #60537b;
+    transform: scale(1.03);
+}
+
+/* ------------------ TÍTULO DO CARTÃO DE AÇÃO ------------------ */
+.action-card h4 {
+    color: #00ff88;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* ------------------ PARÁGRAFO DO CARTÃO DE AÇÃO ------------------ */
+.action-card p {
+    font-size: 1em;
+    line-height: 1.4;
+    color: #f0ffffb2;
+}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Minhas Solicitações{% endblock %}
+
+{% block content %}
+    <div class="requests-container">
+        <h2>Minhas Solicitações LGPD</h2>
+        
+        {% if requests %}
+            <table class="requests-table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                        <tr>
+                            <td>
+                                {% if request['request_type'] == 'access' %}
+                                    Acesso aos Dados
+                                {% elif request['request_type'] == 'rectification' %}
+                                    Retificação
+                                {% elif request['request_type'] == 'deletion' %}
+                                    Exclusão
+                                {% elif request['request_type'] == 'portability' %}
+                                    Portabilidade
+                                {% else %}
+                                    {{ request['request_type'] }}
+                                {% endif %}
+                            </td>
+                            <td>{{ request['created_at'] }}</td>
+                            <td>
+                                <span class="status-{{ request['request_status'] }}">
+                                    {% if request['request_status'] == 'pending' %}
+                                        Pendente
+                                    {% elif request['request_status'] == 'processing' %}
+                                        Em Processamento
+                                    {% elif request['request_status'] == 'completed' %}
+                                        Concluído
+                                    {% elif request['request_status'] == 'denied' %}
+                                        Negado
+                                    {% else %}
+                                        {{ request['request_status'] }}
+                                    {% endif %}
+                                </span>
+                            </td>
+                            <td>
+                                {% if request['request_data'] %}
+                                    {{ request['request_data'] }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Você não tem nenhuma solicitação registrada.</p>
+        {% endif %}
+    </div>
+{% endblock %}

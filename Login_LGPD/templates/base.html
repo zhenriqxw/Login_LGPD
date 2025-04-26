@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema LGPD - {% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/privacy.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_requests.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+<body>
+    {% if request.path != url_for('privacy') %}
+        {% if 'user_id' in session %}
+            <header>
+                <h1>Sistema de Login em Conformidade com a LGPD</h1>
+                <nav>
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('my_requests') }}">Minhas Solicitações</a>
+                    <a href="{{ url_for('logout') }}">Sair</a>
+                    <a href="{{ url_for('privacy') }}" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>
+                </nav>
+            </header>
+        {% endif %}
+    {% endif %}
+    
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% if 'user_id' in session %}
+    <footer>
+        <p>Sistema desenvolvido em conformidade com a Lei Geral de Proteção de Dados (LGPD)</p>
+        <p>© 2023 - Todos os direitos reservados</p>
+    </footer>
+    {% endif %}
+<script>
+window.addEventListener('beforeunload', function (e) {
+    // Envia requisição para logout ao fechar a guia
+    navigator.sendBeacon('{{ url_for("logout") }}');
+});
+</script>
+</body>
+</html>

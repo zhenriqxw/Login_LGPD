@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="main-login">
+        <div class="left-login">
+            <h1>Faça seu login<br>E teste nossa aplicação</h1>
+            <img src="{{ url_for('static', filename='assets/astronauta.svg') }}" class="left-login-img" alt="Astronauta">
+        </div>
+        
+        <div class="right-login">
+            <div class="card-login">
+                <h1>LOGIN</h1>
+<form method="POST" action="{{ url_for('login') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="textfield">
+        <div class="label-icon">
+            <label for="username">Nome de Usuário</label>
+            <i class="material-icons">person</i>
+        </div>
+        <input type="text" name="username" placeholder="Digite seu nome de usuário" required>
+    </div>
+
+                    <div class="textfield password-field">
+                        <div class="label-icon">
+                            <label for="password">Senha</label>
+                            <i class="material-icons">lock</i>
+                        </div>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                            <i class="material-icons" id="eye-password">visibility</i>
+                        </span>
+                    </div>
+
+                    <p class="login-link"><a href="{{ url_for('forgot_password') }}" class="fade-link">Esqueceu a senha?</a></p>
+                    <button type="submit" class="btn-login">LOGIN</button>
+                    <p class="login-link">Não tem uma conta? <a href="{{ url_for('register') }}" class="fade-link">Crie uma</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("fade-in");
+        });
+
+        const fadeLink = document.querySelector('.fade-link');
+        if (fadeLink) {
+            fadeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.body.classList.remove("fade-in");
+                document.body.classList.add("fade-out");
+                setTimeout(() => {
+                    window.location.href = fadeLink.href;
+                }, 500);
+            });
+        }
+        
+        function togglePasswordVisibility(fieldId) {
+            const input = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById('eye-' + fieldId);
+            if (input.type === "password") {
+                input.type = "text";
+                eyeIcon.textContent = "visibility_off";
+            } else {
+                input.type = "password";
+                eyeIcon.textContent = "visibility";
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <h2>Bem-vindo, {{ username }}!</h2>
+        
+        <div class="lgpd-actions">
+            <h3>Seus Direitos LGPD</h3>
+            <br>
+            <div class="action-card" onclick="makeRequest('access')">
+                <h4>Acessar Meus Dados</h4>
+                <p>Solicite uma cópia de todos os dados que temos sobre você.</p>
+            </div>
+            
+            <div class="action-card" onclick="makeRequest('rectification')">
+                <h4>Retificar Dados</h4>
+                <p>Solicite a correção de dados incompletos, inexatos ou desatualizados.</p>
+            </div>
+            
+            <div class="action-card" onclick="makeRequest('deletion')">
+                <h4>Excluir Minha Conta</h4>
+                <p>Solicite a exclusão dos seus dados pessoais de nossos sistemas.</p>
+            </div>
+            
+            <div class="action-card" onclick="makeRequest('portability')">
+                <h4>Portabilidade de Dados</h4>
+                <p>Solicite a transferência dos seus dados para outro serviço.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function getCsrfToken() {
+            const meta = document.querySelector('meta[name="csrf-token"]');
+            return meta ? meta.getAttribute('content') : '';
+        }
+
+        function makeRequest(type) {
+            fetch('/request-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken()
+                },
+                body: JSON.stringify({ type: type })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Solicitação enviada com sucesso! Acompanhe o status em "Minhas Solicitações".');
+                } else {
+                    alert('Erro ao enviar solicitação: ' + (data.error || 'Tente novamente mais tarde.'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Erro ao enviar solicitação.');
+            });
+        }
+    </script>
+{% endblock %}
